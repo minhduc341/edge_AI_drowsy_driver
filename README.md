@@ -1,7 +1,5 @@
 # Drowsiness Detection using MobileNetV2 on STM32H750
 
-Real-time drowsiness detection for drivers using an edge AI model deployed directly on the STM32H750 microcontroller. The system captures live grayscale images from a camera, processes them using a lightweight MobileNetV2-based model, and displays the result on a TFT LCD screen.
-
 ---
 
 ## 📌 Project Overview
@@ -43,19 +41,17 @@ Target application: embedded, on-device drowsiness monitoring for smart vehicles
 
 🧩 Hardware:
 
-- STM32H750 board (tested on STM32H750VBT6)
-- OV2640 camera (connected via DCMI)
-- 0.96” TFT LCD (SPI interface)
-- Optional: External QSPI Flash (for model storage)
+- WeAct STM32H750 board [link](https://github.com/WeActStudio/MiniSTM32H7xx)
+- OV2640 camera 
+- 0.96” TFT LCD 
 
 💻 Software:
 
 - STM32CubeIDE
-- STM32Cube.AI (X-Cube-AI)
 - Python 3.10+
 - PyTorch
-- OpenCV (for preprocessing and augmentation)
-- Jupyter Notebook (optional for training scripts)
+- OpenCV
+- Jupyter Notebook
 
 ---
 
@@ -63,30 +59,24 @@ Target application: embedded, on-device drowsiness monitoring for smart vehicles
 
 ```
 .
-├── model/ # AI model files
-│ ├── mobilenetv2_fomo.pt
-│ ├── model.onnx
-│ └── ai_model.c/.h (from X-Cube-AI)
-├── data/ # Training and validation data
+├── model/
+│ ├── best_model_grayscale_128x128_24_05_2025.pth
+│ └── best_model_grayscale_128x128_24_05_2025.onnx
+├── dataset/
 │ ├── train/
-│ ├── test/
-│ └── _annotations.csv
+│ │ └──_annotations.csv
+│ ├── valid
+│ │ └──_annotations.csv
+│ └── test/
+│   └──_annotations.csv
 ├── stm32_project/ # STM32CubeIDE project
 │ ├── Core/
-│ ├── Inc/
-│ ├── Src/
-│ └── main.c
-├── notebooks/ # Training & conversion notebooks
-│ ├── train_model.ipynb
-│ └── convert_model_xcubeai.ipynb
-├── README.md
-└── requirements.txt
+│ ├── Drivers/
+│ └── edge_AI_drowsiness.ioc
+├── notebooks/
+│ └── train_model.ipynb
+└── README.md
 ```
-
-yaml
-Always show details
-
-Copy
 
 ---
 
@@ -110,31 +100,6 @@ Copy
 - Flash usage: ~30 KB (model only)
 - RAM usage: ~407 KB
 - Real-time FPS on STM32H750: ~15 FPS
-- Limitations: Real-time predictions on STM32H750 are less accurate than offline results due to quantization & lighting variation.
-
----
-
-
-## 🔧 Re-training & Conversion
-
-- Training data format: 128×128 grayscale images
-- Labels: stored in _annotations.csv (bounding boxes + class)
-- Augmentation: basic shift (±2 px), horizontal flip
-- Conversion path:
-  → PyTorch (.pt) → ONNX → X-Cube-AI (.c/.h)  
-- Run convert_model_xcubeai.ipynb to export ONNX model
-
----
-
-
-## 📋 Inference Logic
-
-- Image divided into 16×16 grid
-- For each grid cell:
-  - If overlaps with a bounding box:
-    → label = 1 (drowsy) or 2 (non-drowsy)
-  - Else: label = 0
-- Output: 3x16x16 probability map
 
 ---
 
@@ -149,26 +114,4 @@ Note: The dataset used is derived from synthetic driving scenes in Roblox and is
 ---
 
 
-## 🤝 Contributions & Contact
-
-Pull requests are welcome.  
-For major changes, please open an issue first to discuss.
-
-Author: [Your Name]  
-Email: your@email.com  
-GitHub: https://github.com/your_username
-
----
-
-
-📷 Demo Image
-
-You can add a real LCD output image in images/ folder and show in README:
-
-![LCD Output Demo](images/demo_lcd.jpg)
-"""
-
-with open("/mnt/data/README.md", "w") as f:
-    f.write(readme_content)
-
-"/mnt/data/README.md"
+📷 [Demo Video](https://youtu.be/xnOyMFRJEb4)
