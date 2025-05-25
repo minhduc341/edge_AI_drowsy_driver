@@ -61,7 +61,7 @@ Target application: embedded, on-device drowsiness monitoring for smart vehicles
 
 ## 📦 Project Structure
 
-'''
+```
 .
 ├── model/ # AI model files
 │ ├── mobilenetv2_fomo.pt
@@ -81,7 +81,7 @@ Target application: embedded, on-device drowsiness monitoring for smart vehicles
 │ └── convert_model_xcubeai.ipynb
 ├── README.md
 └── requirements.txt
-'''
+```
 
 yaml
 Always show details
