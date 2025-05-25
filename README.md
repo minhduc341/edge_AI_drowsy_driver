@@ -6,8 +6,6 @@
 
 This project implements a lightweight object detection model to detect whether a driver is drowsy or not. It leverages a reduced MobileNetV2 backbone trained and converted for real-time inference on STM32H750 using STM32Cube.AI. The model takes grayscale input from a camera and displays predictions on an LCD screen.
 
-Target application: embedded, on-device drowsiness monitoring for smart vehicles or helmets.
-
 ---
 
 ## 🎯 Objectives
@@ -41,7 +39,7 @@ Target application: embedded, on-device drowsiness monitoring for smart vehicles
 
 🧩 Hardware:
 
-- WeAct STM32H750 board [link](https://github.com/WeActStudio/MiniSTM32H7xx)
+- WeAct STM32H750VBT6 board [link](https://github.com/WeActStudio/MiniSTM32H7xx)
 - OV2640 camera 
 - 0.96” TFT LCD 
 
@@ -77,18 +75,6 @@ Target application: embedded, on-device drowsiness monitoring for smart vehicles
 │ └── train_model.ipynb
 └── README.md
 ```
-
----
-
-
-## 🚀 Getting Started
-
-1. Clone the repository
-2. Train the model (optional, model is provided)
-3. Convert model to C array using X-Cube-AI
-4. Open stm32_project in STM32CubeIDE
-5. Flash firmware to STM32H750
-6. Connect camera + LCD and run
 
 ---
 
