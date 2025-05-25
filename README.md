@@ -20,7 +20,7 @@ This project implements a lightweight object detection model to detect whether a
 
 ## 🧠 AI Model Details
 
-- Backbone: MobileNetV2 (width multiplier α = 0.1)
+- Backbone: MobileNetV2 (width multiplier α = 0.1) [link](https://github.com/d-li14/mobilenetv2.pytorch)
 - Truncated: first 5 blocks used (stride = 8)
 - Input: 128×128 grayscale image → repeated to 3 channels
 - Output: feature map size (3 × 16 × 16)
@@ -67,7 +67,7 @@ This project implements a lightweight object detection model to detect whether a
 │ │ └──_annotations.csv
 │ └── test/
 │   └──_annotations.csv
-├── stm32_project/ # STM32CubeIDE project
+├── stm32_project/
 │ ├── Core/
 │ ├── Drivers/
 │ └── edge_AI_drowsiness.ioc
